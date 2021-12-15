@@ -58,7 +58,7 @@ class ChainedHash:
                 if pp == None:
                     self.table[hash] = p.next
                 else:
-                    pp.next = p.next  # t -> 1 -> 2 -> 3
+                    pp.next = p.next  # t -> 1 -> 2(삭제한다면) -> 3 =>  t -> 1 -> 3 (참조값을 바꿈)
 
                 return True
 

@@ -45,14 +45,14 @@ class OpenHash:
 
         for _ in range(self.capacity):
             if p.stat == Status.EMPTY:
-                break
-            elif p.stat == Status.OCCUPIED and p.key == key:
+                break  # 해시테이블이 비어있으면 None 출력
+            elif p.stat == Status.OCCUPIED and p.key == key:  # 노드가 생성된 상태인데 키가 동일하면 반환
                 return p
 
-            rehash = self.rehash_value(hash)
-            p = self.table[rehash]
+            hash = self.rehash_value(hash)
+            p = self.table[hash]
 
-        return None  # 해시테이블 꽉 참
+        return None
 
     def search(self, key) -> bool:
         p = self.search_node(key)
@@ -74,10 +74,10 @@ class OpenHash:
                 self.table[hash] = Bucket(key, value, Status.OCCUPIED)
                 return True
 
-            hash = self.rehash_value(hash) # 인자로 왜 자꾸 key를 넘기지 ... hash로 넘겨야함 (변수명도 상단 멤버변수가 변경되도록 일치시켜야함)
+            hash = self.rehash_value(hash)  # 인자로 왜 자꾸 key를 넘기지 ... hash로 넘겨야함 (변수명도 상단 멤버변수가 변경되도록 일치시켜야함)
             p = self.table[hash]
 
-        return False
+        return False  # 해시테이블 가득 참
 
     def remove(self, key):
         p = self.search_node(key)
@@ -99,7 +99,3 @@ class OpenHash:
                 print('--삭제 완료--')
             elif stat == Status.EMPTY:
                 print('--비어 있음--')
-
-
-
-
