@@ -92,7 +92,7 @@ class OpenHash:
         for i in range(self.capacity):
             stat = self.table[i].stat
 
-            print(f'{i:2}', end=' ')
+            print(f'{i}', end=' ')
             if stat == Status.OCCUPIED:
                 print(f'{self.table[i].key} ({self.table[i].value})')
             elif stat == Status.DELETED:

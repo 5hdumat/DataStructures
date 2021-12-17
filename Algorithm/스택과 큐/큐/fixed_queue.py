@@ -50,7 +50,7 @@ class FixedQueue:
         self.front += 1 # 반환 후 front를 1 증가시켜주고
         self.no -= 1 # 데이터를 반환했으니 큐에 담긴 데이터 개수 -1을 해준다.
 
-        # front값이 증가하다가 큐의 용량을 넘어서게도면 0으로 다시 되돌린다.
+        # front값이 증가하다가 큐의 용량을 넘어서게되면 0으로 다시 되돌린다.
         if self.front == self.capacity:
             self.front = 0
 

@@ -1,4 +1,4 @@
-from fixed_queue_복습 import FixedQueue
+from 복습 import FixedQueue
 from enum import Enum
 
 Menu = Enum('Menu', ['인큐', '디큐', '피크', '검색', '덤프', '종료'])
