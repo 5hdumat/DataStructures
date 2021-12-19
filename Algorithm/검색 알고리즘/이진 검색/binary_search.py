@@ -19,7 +19,7 @@ def binary_search(seq: Sequence, key: Any) -> int:
     pl = 0
     pr = len(seq) - 1
 
-    while pl <= pr:
+    while True:
         pc = (pl + pr) // 2
 
         if seq[pc] == key:
@@ -30,6 +30,9 @@ def binary_search(seq: Sequence, key: Any) -> int:
 
         if seq[pc] < key:
             pl = pc + 1
+
+        if pl > pr:
+            break
 
         print(pc, pl, pr)
 

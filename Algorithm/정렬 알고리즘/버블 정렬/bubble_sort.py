@@ -1,7 +1,7 @@
 '''
-버블 정렬 (단순 교환 정렬)
+버블 정렬 (안정적인 정렬 , O(n**2))
 
-이웃한 두 원소의 대소 관계를 비교하여 필요에 따라 '교환'을 반복하는 알고리즘
+이웃한 두 원소의 대소 관계를 비교하여 필요에 따라 '교환'을 반복하는 알고리즘, 단순 교환 정렬이라고도 한다.
 
 6 4 3 7 1 (9 8)
 6 4 3 7 1 (8 9)
@@ -13,8 +13,8 @@
 
 
 def bubble_sort(x):
-    ccnt = 1
-    scnt = 1
+    ccnt = 0
+    scnt = 0
 
     for i in range(num - 1):
         for j in range(num - 1, i, - 1):
@@ -43,8 +43,8 @@ def bubble_sort(x):
 
 
 def bubble_sort_cutedge1(x):
-    ccnt = 1
-    scnt = 1
+    ccnt = 0
+    scnt = 0
 
     for i in range(num - 1):
         print(f'패스 {i + 1}')
@@ -62,7 +62,7 @@ def bubble_sort_cutedge1(x):
 
             ccnt += 1
             if x[j - 1] > x[j]:
-                scnt + 1
+                scnt += 1
                 exchange += 1
                 x[j], x[j - 1] = x[j - 1], x[j]
 
@@ -82,8 +82,8 @@ def bubble_sort_cutedge1(x):
 
 
 def bubble_sort_cutedge2(x):
-    ccnt = 1
-    scnt = 1
+    ccnt = 0
+    scnt = 0
 
     k = 0
     i = 0
