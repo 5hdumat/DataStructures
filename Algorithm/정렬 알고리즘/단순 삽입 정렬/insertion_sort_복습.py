@@ -1,30 +1,33 @@
-def insertion_sort(x):
+def insertion_search(x):
     for i in range(1, n):
-        key = x[i]
         j = i
+        tmp = x[i]
 
-        while j > 0 and key < x[j]:
+        while j > 0 and x[j - 1] > tmp:
             x[j] = x[j - 1]
             j -= 1
 
-        x[j] = key
+        x[j] = tmp
 
 
-def binary_insertion_sort(x):
+# binary search를 활용한 선택 삽입 정렬 복습
+def binary_insertion_search(x):
     for i in range(1, n):
-        key = x[i]
+        tmp = x[i]
         pl = 0
         pr = i - 1
 
         while True:
             pc = (pl + pr) // 2
 
-            if x[pc] == key:
+            if x[pc] == tmp:
                 break
-            elif x[pc] < key:
-                pl = pc + 1
-            else:
+
+            elif x[pc] > tmp:
                 pr = pc - 1
+
+            else:
+                pl = pc + 1
 
             if pl > pr:
                 break
@@ -37,7 +40,7 @@ def binary_insertion_sort(x):
         for j in range(i, pd, -1):
             x[j] = x[j - 1]
 
-        x[pd] = key
+        x[pd] = tmp
 
 
 if __name__ == '__main__':
@@ -47,6 +50,6 @@ if __name__ == '__main__':
     for i in range(n):
         x[i] = int(input(f'x[{i}]: '))
 
-    binary_insertion_sort(x)
+    insertion_search(x)
 
     print(x)

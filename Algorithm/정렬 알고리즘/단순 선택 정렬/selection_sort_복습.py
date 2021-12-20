@@ -1,6 +1,11 @@
+'''
+4 3 6 1 2
+'''
+
+
 def selection_sort(x):
     for i in range(num - 1):
-        min = i  # 일단 i가 가장 작은 값이라고 가정
+        min = i
 
         for j in range(i + 1, num):
             if x[j] < x[min]:
