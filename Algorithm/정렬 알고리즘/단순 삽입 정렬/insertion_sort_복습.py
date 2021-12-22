@@ -13,21 +13,19 @@ def insertion_search(x):
 # binary search를 활용한 선택 삽입 정렬 복습
 def binary_insertion_search(x):
     for i in range(1, n):
-        tmp = x[i]
         pl = 0
         pr = i - 1
+        tmp = x[i]
 
         while True:
             pc = (pl + pr) // 2
 
             if x[pc] == tmp:
                 break
-
-            elif x[pc] > tmp:
-                pr = pc - 1
-
-            else:
+            elif x[pc] < tmp:
                 pl = pc + 1
+            else:
+                pr = pc - 1
 
             if pl > pr:
                 break
@@ -37,6 +35,7 @@ def binary_insertion_search(x):
         else:
             pd = pr + 1
 
+        # 단순 삽입 정렬은 인자를 적절한 위치에 넣기 위해 삽입해야할 위치 뒤의 인자들을 한 칸씩 뒤로 밀어야 한다.
         for j in range(i, pd, -1):
             x[j] = x[j - 1]
 
@@ -50,6 +49,6 @@ if __name__ == '__main__':
     for i in range(n):
         x[i] = int(input(f'x[{i}]: '))
 
-    insertion_search(x)
+    binary_insertion_search(x)
 
     print(x)
