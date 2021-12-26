@@ -10,7 +10,7 @@ def insertion_sort(x, left, right):
         x[j] = tmp
 
 
-def sort(x, p1, p2, p3):
+def pivot_sort(x, p1, p2, p3):
     if x[p1] > x[p2]:
         x[p1], x[p2] = x[p2], x[p1]
 
@@ -30,12 +30,12 @@ def qsort(x, left, right):
     else:
         pl = left
         pr = right
-        m = sort(x, pl, (pl + pr) // 2, pr)
+        m = pivot_sort(x, pl, (pl + pr) // 2, pr)
         pivot = x[m]
 
         x[m], x[pr - 1] = x[pr - 1], x[m]
-        left += 1
-        right -= 2
+        pl += 1
+        pr -= 2
         while pl <= pr:
             while x[pl] < pivot:
                 pl += 1
@@ -53,8 +53,6 @@ def qsort(x, left, right):
 
         if pl < right:
             qsort(x, pl, right)
-
-        print(x)
 
 
 if __name__ == '__main__':

@@ -35,9 +35,10 @@ def qsort(x, left, right):
         m = pivot_sort(x, pl, (pl + pr) // 2, pr)
         pivot = x[m]
 
-        left += 1
-        right -= 2
+        x[m], x[pr - 1] = x[pr - 1], x[m]
 
+        pl += 1
+        pr -= 2
         while pl <= pr:
             while x[pl] < pivot:
                 pl += 1
