@@ -1,5 +1,5 @@
 def heap_sort(x):
-    def down_heap(x, left, right):
+    def heap_down(x, left, right):
         tmp = x[left]
         parent = left
 
@@ -21,11 +21,11 @@ def heap_sort(x):
         x[parent] = tmp
 
     for i in range((n - 1) // 2, -1, -1):
-        down_heap(x, i, n - 1)
+        heap_down(x, i, n - 1)
 
     for i in range(n - 1, 0, -1):
         x[0], x[i] = x[i], x[0]
-        down_heap(x, 0, i - 1)
+        heap_down(x, 0, i - 1)
 
 
 if __name__ == '__main__':

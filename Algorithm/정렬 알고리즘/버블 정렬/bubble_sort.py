@@ -18,13 +18,13 @@ def bubble_sort(x):
 
     for i in range(num - 1):
         for j in range(num - 1, i, - 1):
-            # 정렬 과정을 출력하기 위한 반복문
-            for m in range(num):
-                # if m != j - 1가 참이면 공백
-                # 거짓이면 ' +' if x[j - 1] > x[j] else ' -' 실행
-                print(f'{x[m]:2}' + (' ' if m != j - 1 else ' +' if x[j - 1] > x[j] else ' -'), end='')
-
-            print()
+            # # 정렬 과정을 출력하기 위한 반복문
+            # for m in range(num):
+            #     # if m != j - 1가 참이면 공백
+            #     # 거짓이면 ' +' if x[j - 1] > x[j] else ' -' 실행
+            #     print(f'{x[m]:2}' + (' ' if m != j - 1 else ' +' if x[j - 1] > x[j] else ' -'), end='')
+            #
+            # print()
 
             ccnt += 1
             if x[j - 1] > x[j]:
@@ -50,15 +50,15 @@ def bubble_sort_cutedge1(x):
         print(f'패스 {i + 1}')
 
         exchange = 0
-        for j in range(num - 1, i, - 1):
+        for j in range(num - 1, i, -1):
 
-            # 정렬 과정을 출력하기 위한 반복문
-            for m in range(num):
-                # if m != j - 1가 참이면 공백
-                # 거짓이면 ' +' if x[j - 1] > x[j] else ' -' 실행
-                print(f'{x[m]:2}' + (' ' if m != j - 1 else ' +' if x[j - 1] > x[j] else ' -'), end='')
-
-            print()
+            # # 정렬 과정을 출력하기 위한 반복문
+            # for m in range(num):
+            #     # if m != j - 1가 참이면 공백
+            #     # 거짓이면 ' +' if x[j - 1] > x[j] else ' -' 실행
+            #     print(f'{x[m]:2}' + (' ' if m != j - 1 else ' +' if x[j - 1] > x[j] else ' -'), end='')
+            #
+            # print()
 
             ccnt += 1
             if x[j - 1] > x[j]:
@@ -94,13 +94,13 @@ def bubble_sort_cutedge2(x):
         # 하나씩 줄어드는 반복문임을 유의하자.
         for j in range(num - 1, k, -1):
 
-            # 정렬 과정을 출력하기 위한 반복문
-            for m in range(num):
-                # if m != j - 1가 참이면 공백
-                # 거짓이면 ' +' if x[j - 1] > x[j] else ' -' 실행
-                print(f'{x[m]:2}' + (' ' if m != j - 1 else ' +' if x[j - 1] > x[j] else ' -'), end='')
-
-            print()
+            # # 정렬 과정을 출력하기 위한 반복문
+            # for m in range(num):
+            #     # if m != j - 1가 참이면 공백
+            #     # 거짓이면 ' +' if x[j - 1] > x[j] else ' -' 실행
+            #     print(f'{x[m]:2}' + (' ' if m != j - 1 else ' +' if x[j - 1] > x[j] else ' -'), end='')
+            #
+            # print()
 
             ccnt += 1
             if x[j - 1] > x[j]:
