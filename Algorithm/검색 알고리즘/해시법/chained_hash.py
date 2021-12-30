@@ -46,7 +46,7 @@ class ChainedHash:
         hash = self.hash_value(key)
         p = self.table[hash]
 
-        # 연결 리스트가 비어있지 않다면
+        # 중복 키 검증
         while p is not None:
             if p.key == key:  # 추가할 키가 이미 존재한다면 실패처리 (노드는 key, value 구조로 추가, 여기에서의 key가 중복되면 안됨)
                 return False
