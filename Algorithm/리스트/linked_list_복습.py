@@ -1,11 +1,15 @@
-class Node():
-    def __init__(self, data, next):
+from __future__ import annotations
+
+
+class Node:
+    def __init__(self, data, next: Node):
         self.data = data
         self.next = next
 
 
 class LinkedListIterator:
     def __init__(self, head):
+        # 이터레이터 인스턴스에서만 쓰는 필드
         self.current = head
 
     def __iter__(self):
@@ -26,9 +30,9 @@ class LinkedList:
         self.head = None
         self.current = None
 
-    def search(self, data):
-        ptr = self.head
+    def search(self, data) -> int:
         cnt = 0
+        ptr = self.head
 
         while ptr is not None:
             if ptr.data == data:
@@ -45,8 +49,14 @@ class LinkedList:
 
     def add_first(self, data):
         ptr = self.head
-        self.head = self.current = Node(data, ptr)
+
+        if ptr is None:
+            self.head = Node(data, None)
+        else:
+            self.head = Node(data, ptr)
+
         self.no += 1
+        self.current = self.head
 
     def add_last(self, data):
         ptr = self.head
@@ -57,21 +67,28 @@ class LinkedList:
             while ptr.next is not None:
                 ptr = ptr.next
 
-            ptr.next = self.current = Node(data, None)
+            ptr.next = Node(data, None)
+            self.current = ptr.next
             self.no += 1
 
     def remove_first(self):
         if self.head is not None:
-            self.head = self.current = self.head.next
-            self.no -= 1
+            if self.head.next is None:
+                self.head = None
+                self.current = None
+                self.no -= 1
+            else:
+                self.head = self.head.next
+                self.current = self.head
+                self.no -= 1
 
     def remove_last(self):
         if self.head is not None:
             if self.head.next is None:
                 self.remove_first()
             else:
-                pre = self.head
                 ptr = self.head
+                pre = self.head
 
                 while ptr.next is not None:
                     pre = ptr
@@ -81,45 +98,33 @@ class LinkedList:
                 self.current = pre
                 self.no -= 1
 
-    def remove(self, node):
+    def remove(self, p):
         if self.head is not None:
-            if node is self.head:
+            if self.head.next is None:
                 self.remove_first()
             else:
                 ptr = self.head
 
-                while ptr is not node:
+                while ptr.next is not p:
                     ptr = ptr.next
 
                     if ptr is None:
                         return
 
-                ptr.next = node.next
+                ptr.next = p.next
                 self.current = ptr
                 self.no -= 1
 
     def remove_current_node(self):
         self.remove(self.current)
 
+    # 전체 노드 삭제
     def clear(self):
         while self.head is not None:
-            self.remove_first
+            self.remove_first()
 
-        self.no = 0
         self.current = None
-
-    def print(self):
-        ptr = self.head
-
-        while ptr is not None:
-            print(ptr.data)
-            ptr = ptr.next
-
-    def print_current_node(self):
-        if self.current is None:
-            print('주목 노드가 존재하지 않습니다.')
-        else:
-            print(self.current.data)
+        self.no = 0
 
     def next(self):
         if self.current is None or self.current.next is None:
@@ -127,6 +132,21 @@ class LinkedList:
         else:
             self.current = self.current.next
             return True
+
+    # 주목 노드 출력
+    def print_current_node(self):
+        if self.current is None:
+            print('주목 노드가 존재하지 않습니다.')
+        else:
+            print(self.current.data)
+
+    # 모든 노드를 출력
+    def print(self):
+        ptr = self.head
+
+        while ptr is not None:
+            print(ptr.data)
+            ptr = ptr.next
 
     def __iter__(self):
         return LinkedListIterator(self.head)

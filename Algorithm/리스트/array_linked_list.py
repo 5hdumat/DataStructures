@@ -185,7 +185,7 @@ class ArrayLinkedList:
     def print(self):
         ptr = self.head
 
-        while self.n[ptr].next != Null:
+        while ptr != Null:
             print(self.n[ptr].data)
             ptr = self.n[ptr].next
 
