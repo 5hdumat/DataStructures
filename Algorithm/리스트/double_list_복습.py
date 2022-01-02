@@ -1,12 +1,3 @@
-'''
-원형 이중 연결 리스트
-
-원형 리스트: 연결 리스트의 꼬리 노드가 머리 노드를 다시 가리킨다.
-이중 연결 리스트: 일반적으로 연결리스트는 후위 노드를 찾기 쉽게 구현되어있지만 전위 노드를 찾기 어렵다는 단점이 있다. 이를 해결하기 위해 앞쪽 노드에 대한 포인터를 추가로 두고 개선한 연결 리스트이다.
-원형 이중 연결 리스트: 원형 리스트 + 이중 연결 리스트
-'''
-
-
 class Node:
     def __init__(self, data=None, prev=None, next=None):
         self.data = data
@@ -15,7 +6,7 @@ class Node:
 
 
 class DoubleLinkedListIterator:
-    def __init__(self, head: Node):
+    def __init__(self, head):
         self.head = head
         self.current = head.next
 
@@ -32,7 +23,7 @@ class DoubleLinkedListIterator:
 
 
 class DoubleLinkedListReverseIterator:
-    def __init__(self, head: Node):
+    def __init__(self, head):
         self.head = head
         self.current = head.prev
 
@@ -50,7 +41,7 @@ class DoubleLinkedListReverseIterator:
 
 class DoubleLinkedList:
     def __init__(self):
-        self.head = self.current = Node()
+        self.current = self.head = Node()
         self.no = 0
 
     def __len__(self):
@@ -59,22 +50,56 @@ class DoubleLinkedList:
     def is_empty(self):
         return self.head.next is self.head
 
-    def search(self, data) -> int:
+    def search(self, data):
         cnt = 0
-        ptr = self.head.next
+        ptr = self.head
 
-        while ptr is not self.head:
+        while ptr.next is not self.head:
             if ptr.data == data:
                 self.current = ptr
                 return cnt
 
             cnt += 1
-            ptr = ptr.next
+            ptr = self.head.next
 
         return -1
 
     def __contains__(self, data):
         return self.search(data) >= 0
+
+    # 주목 노드 위치에 새로운 노드 삽입
+    def add(self, data):
+        node = Node(data, self.current, self.current.next)
+        self.current.next.prev = node
+        self.current.next = node
+        self.current = node
+        self.no += 1
+
+    def add_first(self, data):
+        self.current = self.head
+        self.add(data)
+
+    def add_last(self, data):
+        self.current = self.head.prev
+        self.add(data)
+
+    def remove_current_node(self, data):
+        if not self.is_empty():
+            self.current.next.prev = self.current.prev
+            self.current.prev.next = self.current.next
+            self.current = self.current.prev
+            self.no -= 1
+
+            if self.current is self.head:
+                self.current = self.current.next
+
+    def remove_first(self):
+        self.current = self.head
+        self.remove_current_node()
+
+    def remove_last(self):
+        self.current = self.head.prev
+        self.remove_current_node()
 
     def print_current_node(self):
         if self.is_empty():
@@ -109,52 +134,6 @@ class DoubleLinkedList:
         else:
             self.current = self.current.prev
             return True
-
-    # 주목 노드 다음에 삽입
-    def add(self, data):
-        node = Node(data, self.current, self.current.next)
-        self.current.next.prev = node
-        self.current.next = node
-        self.current = node
-        self.no += 1
-
-    def add_first(self, data):
-        self.current = self.head
-        self.add(data)
-
-    def add_last(self, data):
-        self.current = self.head.prev
-        self.add(data)
-
-    def remove_current_node(self):
-        if not self.is_empty():
-            self.current.prev.next = self.current.next
-            self.current.next.prev = self.current.prev
-            self.current = self.current.prev
-            self.no -= 1
-
-            if self.current is self.head:
-                self.current = self.head.next
-
-    def remove(self, p):
-        ptr = self.head.next
-
-        while ptr is not self.head:
-            if ptr is p:
-                self.current = p
-                self.remove_current_node()
-                self.no -= 1
-                break
-
-            ptr = ptr.next
-
-    def remove_first(self):
-        self.current = self.head.next
-        self.remove_current_node()
-
-    def remove_last(self):
-        self.current = self.head.prev
-        self.remove_current_node()
 
     def clear(self):
         ptr = self.head.next

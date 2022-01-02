@@ -1,5 +1,5 @@
 from enum import Enum
-from double_list import DoubleLinkedList
+from double_list_복습 import DoubleLinkedList
 
 Menu = Enum('Menu', ['머리에노드삽입', '꼬리에노드삽입', '주목노드바로뒤삽입',
                      '머리노드삭제', '꼬리노드삭제', '주목노드출력',
@@ -46,7 +46,7 @@ while True:
         lst.next()
 
     elif menu == Menu.주목노드역순이동:
-        lst.next()
+        lst.prev()
 
     elif menu == Menu.주목노드삭제:
         lst.remove_current_node()
@@ -80,7 +80,7 @@ while True:
         for e in lst:
             print(e)
 
-    elif menu == Menu.모든노드스캔:
+    elif menu == Menu.모든노드역순스캔:
         for e in reversed(lst):
             print(e)
 
