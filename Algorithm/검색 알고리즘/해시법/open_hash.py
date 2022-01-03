@@ -78,7 +78,7 @@ class OpenHash:
             hash = self.rehash_value(hash)
             p = self.table[hash]
 
-        return False # 해시테이블이 가득 참
+        return False  # 해시테이블이 가득 참
 
     def remove(self, key: Any) -> int:
         p = self.search_node(key)

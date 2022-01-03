@@ -1,5 +1,5 @@
 '''
-셸 정렬은 단순 삽입 정렬의 장점을 살리고 단점은 보오나하여 더 빠르게 정렬하는 알고리즘이다.
+셸 정렬은 단순 삽입 정렬의 장점을 살리고 단점은 보완하여 더 빠르게 정렬하는 알고리즘이다.
 셸 정렬은 먼저 정렬할 배열의 원소를 그룹으로 나워 각 그룹별로 정렬을 수행한다. (이웃한 원소와 비교하지 않으므로 안정적이지 않은 정렬을 수행한다.)
 
 [8, 1, 4, 2, 7, 6, 3, 5]
@@ -67,20 +67,15 @@ def shell_sort2(x: MutableSequence):
         h = h * 3 + 1
 
     while h > 0:
-        print('hhhh', h)
         for i in range(h, num):
             j = i - h
             tmp = x[i]
 
             while j >= 0 and x[j] > tmp:
-                print(x[j + h], x[j])
                 x[j + h] = x[j]
                 j -= h
 
             x[j + h] = tmp
-            print(x[j + h], tmp)
-
-            print(x)
 
         # h //= 2
         h //= 3
@@ -95,7 +90,7 @@ if __name__ == '__main__':
     for i in range(num):
         x[i] = int(input(f'x[{i}]: '))
 
-    shell_sort2(x)
+    shell_sort(x)
 
     print('오름차순 정렬을 수행했습니다.')
 

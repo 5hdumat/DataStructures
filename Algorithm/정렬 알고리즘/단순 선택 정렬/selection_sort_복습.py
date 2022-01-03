@@ -4,10 +4,10 @@
 
 
 def selection_sort(x):
-    for i in range(num - 1):
+    for i in range(num):
         min = i
 
-        for j in range(i + 1, num):
+        for j in range(i, num):
             if x[j] < x[min]:
                 min = j
 
