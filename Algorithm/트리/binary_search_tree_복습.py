@@ -16,19 +16,20 @@ class BinarySearchTree:
         while True:
             if p is None:
                 return None
-
-            if p.key == key:
-                return p.value
-            elif p.key > key:
-                p = p.left
-            elif p.key < key:
-                p = p.right
+            else:
+                if key == p.key:
+                    return p.value
+                elif key < p.key:
+                    p = p.left
+                else:
+                    p = p.right
 
     def add(self, key, value):
         def add_node(node, key, value):
-            if node.key == key:
+            if key == node.key:
                 return False
-            elif node.key > key:
+
+            elif key < node.key:
                 if node.left is None:
                     node.left = Node(key, value)
                 else:
@@ -44,87 +45,65 @@ class BinarySearchTree:
         if self.root is None:
             self.root = Node(key, value)
             return True
+
         else:
-            p = self.root
-
-            while p is not None:
-                if key == p.key:
-                    return False
-                elif key < p.key:
-                    if p.left is None:
-                        p.left = Node(key, value)
-                        break
-                    else:
-                        p = p.left
-                else:
-                    if p.right is None:
-                        p.right = Node(key, value)
-                        break
-                    else:
-                        p = p.right
-
-            return True
+            return add_node(self.root, key, value)
 
     def remove(self, key):
         p = self.root
         parent = None
-        is_child_left = True
+        is_left_child = True
 
+        # 루트 노드부터 탐색하여 삭제 대상 노드 찾기
         while True:
             if p is None:
-                return False
+                return
 
             if key == p.key:
                 break
             else:
                 parent = p
+
                 if key < p.key:
                     p = p.left
-                    is_child_left = True
+                    is_left_child = True
                 else:
                     p = p.right
-                    is_child_left = False
+                    is_left_child = False
 
-        # 삭제 대상 노드의 자식 노드가 오른쪽에만 있을 때
+        # 왼쪽 노드가 없으면
         if p.left is None:
             if p is self.root:
                 self.root = p.right
-            elif is_child_left:
-                parent.left = parent.right
+            elif is_left_child:
+                parent.left = p.right
             else:
-                parent.left = parent.right
+                parent.right = p.right
+
+        # 오른쪽 노드가 없으면
         elif p.right is None:
             if p is self.root:
                 self.root = p.left
-            elif is_child_left:
-                parent.left = parent.left
+            elif is_left_child:
+                parent.left = p.left
             else:
-                parent.left = parent.left
+                parent.right = p.left
+
+        # 자식 노드가 2개 있으면
         else:
             parent = p
             child = p.left
-            is_child_left = True
+            is_left_child = True
 
             while child.right is not None:
                 parent = child
                 child = child.right
-                is_child_left = False
+                is_left_child = False
 
             p.key = child.key
             p.value = child.value
 
-            if is_child_left:
+            if is_left_child:
                 parent.left = child.left
             else:
                 parent.right = child.left
-
-        return True
-
-    def dump(self):
-        def _dumpp(node):
-            if node is not None:
-                _dumpp(node.left)
-                print(f'{node.key}: {node.value}')
-                _dumpp(node.right)
-
-        _dumpp(self.root)

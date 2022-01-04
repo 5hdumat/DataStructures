@@ -1,15 +1,3 @@
-'''
-KMP법
-
-브루트포스의 치명적인 단점은 일치하지 않은 텍스트를 만나면 이전에 검사했던 결과는 버리고 다시 패턴의 첫 문자부터 선형 탐색한다.
-이와 달리 KMP 법은 검사한 결과를 기억해뒀다가 건너뛰기를 하면서 효율적으로 문자를 매칭할 수 있는 알고리즘이다.
-
-KMP 법은 텍스트와 패턴안에서 겹치는 문자열을 찾아내 문자열 매칭에 실패했어도 다시 시작할 위치를 구하여 패턴의 이동(이하 건너뛰기)을 되도록이면 크게 크게 하는 알고리즘이다.
-
-단점으로는 처리하기 복잡하고 '패턴안에 반복이 없으면 효율이 좋지 않다.'
-'''
-
-
 def kmp_match(txt, pat):
     pt = 1
     pp = 0
@@ -23,10 +11,23 @@ def kmp_match(txt, pat):
         elif pp == 0:
             pt += 1
         else:
+            print(pp, skip[pp])
             pp = skip[pp]
-    print(skip)
+    '''
+    pt = 4
+    pp = 2
+    
+    [0, 0, 0, 1, 2]
+    
+    ABAB
+      ABAB
+    
+    t: ABDBABAB
+    p:     ABAB
+    '''
     pt = pp = 0
-    while pt < len(txt) and pp < len(pat):
+    while pt < len(txt):
+        print(txt[pt], pat[pp])
         if txt[pt] == pat[pp]:
             pt += 1
             pp += 1
@@ -37,8 +38,6 @@ def kmp_match(txt, pat):
 
     if pp == len(pat):
         return pt - pp + 1
-    else:
-        return -1
 
 
 if __name__ == '__main__':
