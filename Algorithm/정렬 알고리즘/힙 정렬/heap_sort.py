@@ -29,9 +29,8 @@ def heap_sort(x):
         temp = x[left]
 
         parent = left
-
-        # 오른쪽 자식 노드가 인덱스로 2가 들어왔는데
-        # (전체 원소 // 2) 가 자식 노드 인덱스보다 작거나 같다는 것은 오른쪽 자식 노드는 자식이 없다는 의미
+        # parent가 2로 들어왔는데 (전체 원소 // 2) 가
+        # parent보다 작거나 같다는 것은 parent는 자식이 없다는 의미
         while parent < (right + 1) // 2:
             cl = parent * 2 + 1  # 왼쪽 자식 노드
             cr = parent * 2 + 2  # 오른쪽 자식 노드
@@ -54,11 +53,11 @@ def heap_sort(x):
 
     # n = 5를 기준으로 (n - 1) // 2를하면 2부터 역순으로 1, 0이 된다.  잘 생각보면 오른쪽 자식 노드부터 왼쪽 자식노드 그리고 부모노드를 가리킨다.
     for i in range((n - 1) // 2, -1, -1):
-        print(i)
         down_heap(x, i, n - 1)
 
     for i in range(n - 1, 0, -1):
         # 배열 뒤에 정렬된 최대값 루트를 하나씩 삽입한다.
+        print(x[0], x[i])
         x[0], x[i] = x[i], x[0]
         down_heap(x, 0, i - 1)
 

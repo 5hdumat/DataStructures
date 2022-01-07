@@ -11,23 +11,23 @@ def kmp_match(txt, pat):
         elif pp == 0:
             pt += 1
         else:
-            print(pp, skip[pp])
+            print(pp)
             pp = skip[pp]
+    print(skip)
     '''
-    pt = 4
-    pp = 2
+    pt = 2
+    pp = 1
     
-    [0, 0, 0, 1, 2]
+    [0, 0, 0, 1, 0, 0, 1, 2, 3, 2, 3, 1, 2, 3, 2]
     
-    ABAB
-      ABAB
+    BABDCBABABBABA
+                BABDCBABABBABA
     
     t: ABDBABAB
     p:     ABAB
     '''
     pt = pp = 0
     while pt < len(txt):
-        print(txt[pt], pat[pp])
         if txt[pt] == pat[pp]:
             pt += 1
             pp += 1
