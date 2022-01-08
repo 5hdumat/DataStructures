@@ -11,8 +11,8 @@ def merge_sort(x):
 
             while mp <= center:
                 buff[bp] = x[mp]
-                mp += 1
                 bp += 1
+                mp += 1
 
             while mp <= right and bk < bp:
                 if buff[bk] < x[mp]:
@@ -28,7 +28,7 @@ def merge_sort(x):
                 bk += 1
                 mk += 1
 
-    buff = [None] * n
+    buff = [0] * n
     _merge_sort(x, 0, n - 1)
     del buff
 

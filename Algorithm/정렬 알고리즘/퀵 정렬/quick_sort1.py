@@ -10,8 +10,11 @@ def qsort(x, left, right):
         while x[qr] > pivot:
             qr -= 1
 
+        # print(ql, qr)
         if ql <= qr:
+            print(x[ql], x[qr])
             x[ql], x[qr] = x[qr], x[ql]
+            print(x)
             ql += 1
             qr -= 1
 

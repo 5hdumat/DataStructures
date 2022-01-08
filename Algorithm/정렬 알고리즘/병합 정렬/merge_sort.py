@@ -31,7 +31,7 @@ def merge_sort(x):
 
             # 배열의 center부터 n까지 buffer에 담겨진 원소와 비교해가며 x에 저장
             while mp <= right and bk < bp:
-                if buff[bk] <= x[mp]:
+                if buff[bk] < x[mp]:
                     x[mk] = buff[bk]
                     bk += 1
                 else:
